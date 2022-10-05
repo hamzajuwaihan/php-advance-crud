@@ -22,12 +22,21 @@ if (isset($_POST['addEmployee'])) {
             VALUES ('$name', '$address', '$salary','$filename')";
             if ($conn->query($sql) === TRUE) {
                 $conn->close();
-                
+
                 header('Location: index.php');
             } else {
                 echo "Error: " . $sql . "<br>" . $conn->error;
             }
         }
+    } else {
+        $sql = "INSERT INTO Employees (name, address, salary,image)
+        VALUES ('$name', '$address', '$salary','default.png')";
+        if ($conn->query($sql) === TRUE) {
+            $conn->close();
+
+            header('Location: index.php');
+        } else {
+            echo "Error: " . $sql . "<br>" . $conn->error;
+        }
     }
 }
-
